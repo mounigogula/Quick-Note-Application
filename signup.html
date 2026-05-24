@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Signup</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='login.css') }}">
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <h1>Sign Up</h1>
+
+    <input type="text"
+    id="username"
+    placeholder="Create Username">
+
+    <input type="password"
+    id="password"
+    placeholder="Create Password">
+
+    <button onclick="signup()">
+        Register
+    </button>
+
+    <p>
+        Already have account?
+        <a href="/">Login</a>
+    </p>
+
+</div>
+
+<script>
+
+async function signup() {
+
+    const username =
+    document.getElementById('username').value;
+
+    const password =
+    document.getElementById('password').value;
+
+    const response = await fetch('/register', {
+
+        method: 'POST',
+
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify({
+            username,
+            password
+        })
+    });
+
+    const data = await response.json();
+
+    alert(data.message);
+
+    if(data.message === "Registration successful") {
+
+        window.location.href = "/";
+    }
+}
+
+</script>
+
+</body>
+</html>

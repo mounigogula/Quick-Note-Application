@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Quick Notes</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Quick Notes</h1>
+
+        <div class="count-box">
+
+            Total Notes:
+            <span id="noteCount">0</span>
+
+        </div>
+
+    </div>
+
+    <textarea
+    id="noteInput"
+    placeholder="Write note here..."></textarea>
+
+    <button onclick="saveNote()">
+        Save Note
+    </button>
+
+    <div id="notesContainer"></div>
+
+</div>
+
+<script
+src="{{ url_for('static', filename='script.js') }}">
+</script>
+
+</body>
+</html>

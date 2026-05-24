@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Login</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='login.css') }}">
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <h1>Login</h1>
+
+    <input type="text"
+    id="username"
+    placeholder="Username">
+
+    <input type="password"
+    id="password"
+    placeholder="Password">
+
+    <button onclick="login()">
+        Login
+    </button>
+
+    <p>
+        New User?
+        <a href="/signup">Create Account</a>
+    </p>
+
+</div>
+
+<script>
+
+async function login() {
+
+    const username =
+    document.getElementById('username').value;
+
+    const password =
+    document.getElementById('password').value;
+
+    const response = await fetch('/login', {
+
+        method: 'POST',
+
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify({
+            username,
+            password
+        })
+    });
+
+    const data = await response.json();
+
+    if(data.success) {
+
+        window.location.href = "/notes";
+
+    } else {
+
+        alert("Invalid Credentials");
+    }
+}
+
+</script>
+
+</body>
+</html>
